@@ -34,7 +34,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## Comandos básicos Docker
+# Comandos básicos Docker
 ## Descarga una imagen al repositorio local
 ```Bash
 docker pull <imagen>
@@ -84,7 +84,7 @@ Ejemplo:
 docker stop postgresDB
 ```
 
--# Borrar o elimina el contenedor
+## Borrar o elimina el contenedor
 ```Bash
 docker rm <id_contenedor>
 ```
@@ -94,7 +94,7 @@ Ejemplo:
 docker rm -f rstudio
 ```
 
-# Borrar la imagen
+#### Borrar la imagen
 ```Bash
 docker rmi <imagen>
 ```
@@ -104,7 +104,7 @@ Ejemplo:
 docker rmi rocker/verse:latest
 ```
 
-# Resplaldar el contenedor en un archivo
+## Resplaldar el contenedor en un archivo
 ```Bash
 docker export -o respaldo.tar nombre_contenedor
 ```
@@ -114,7 +114,7 @@ Tambien es valido:
 docker export nombre-contenedor > respaldo.tar
 ```
 
-# Restaurar un contenedor desde el respaldo
+## Restaurar un contenedor desde el respaldo
 ```Bash
 docker import respaldo.tar nuevo_nombre_contenedor
 ```
