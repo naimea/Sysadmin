@@ -37,7 +37,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 # LVM 
 
 ## Instalación 
+```Bash
 aptitude install lvm2
+```
 
 ## Comandos de gestion
 ## Creando un Volume Group
@@ -115,14 +117,22 @@ VG UUID i3ip9K-5yD9-36Vy-bcKJ-653v-bQz2-BmKQIF
 
 ## Crear un Volúmen Lógico (Logical Volume)
 1) Para crear un Volumen Lógico (Logical Volume) llamado data de 1GB en este Volume Grup llamado "vg":
+```Bash
 lvcreate -n data --size 1g vg
+```
 2) Para formatear este volumen lógico como un File System ext3:
+```Bash
 mkfs.ext3 /dev/vg/data
+```
 3) Para montarlo. Ejemplo:
+```Bash
 mkdir /mnt/data
 mount /dev/vg/data /mnt/data
+```
 4) Si se quiere que se monte automaticamente al iniciar el equipo, se debe editar el /etc/fstab y agregar una línea como esta:
+```Bash
 /dev/vg/data /mnt/data ext3 defaults 0 2
+```
 
 ## Agregar un dispositivo a un Volume Group
 1) Veamos la información previa de nuestro VG (el cual tiene 14,55GB libres)
@@ -211,11 +221,14 @@ PV UUID vOT1ds-lYi2-2Wy3-xTsl-2ZDL-pfUW-0qIew8
 
 ## Ampliar el tamaño de un Volumen Lógico
 1) Para ampliar un volumen lógico (darle más espacio en disco). Un ejemplo con /var
+```Bash
 lvresize -L+10G /dev/vg/var (sustituir 10G por el tamaño correcto, en este caso aumentamos
 10GB)
+```
+
 2) Expandir el filesystem para que coincida con el tamaño del Volumen Lógico
 Nota: haré la explicación con /var, por ser un filesystem complejo)
-2.1) Desmontar el filesystem.
+a) Desmontar el filesystem.
 Nota, si algún proceso tiene tomado archivos dentro de este filesystem, no se podrá desmontar.
 Para consultar los procesos que tienen archivos abiertos dentro de este filesystem usamos 'lsof':
 ```Bash
@@ -278,13 +291,15 @@ Así nos damos cuenta de que el demonio acpi, tambien tiene un socket en uso y p
 Verificamos nuevamente que nadie tiene ocupado el FS con lsof y de estar todo bien, desmontamos el FS
 umount /var
 
-2.2) Ampliar el filesystem
+b) Ampliar el filesystem
 Nota: es conveniente chequear el filesysten, antes de hacer el 'resize'. Para chequearlo se usa:
 ```Bash
 e2fsck -f /dev/vg/var
 ```
 Si es ext2 o ext3
+```Bash
 resize2fs /dev/vg/var
+```
 Ejemplo:
 ```Bash
 # e2fsck -f /dev/vg/var
@@ -303,7 +318,9 @@ El sistema de ficheros en /dev/vg/var tiene ahora 20971520 bloques.
 ```
 
 3) Montar de nuevo el filesystem y levantar los servicios
+```Bash
 mount /var
+```
 
 4) Levantar los servicios que se hayan bajado
 
@@ -311,28 +328,40 @@ mount /var
 NOTA: Es importante recordar reducir el tamaño del filesystem o lo que este residiendo en el volumen antes de encoger el volumen, sino se perderán datos (data). Un ejemplo con /var
 
 1) Desmontar el filesystem:
+```Bash
 umount /var
+```
 
 2) Reducir el filesystem:
 Si es Ext2/Ext3 (colocar el device correcto):
+```Bash
 e2fsck -f /dev/vg/var (siempre es recomendable chequear antes el filesystem)
 resize2fs /dev/vg/var XX (XX es el nuevo tamaño)
+```
 Si es Reiserfs:
+```Bash
 resize_reiserfs -s-XXG /dev/vg/var (En este caso XX es el tamaño a restarle)
+```
 No es posible reducir Xfs ni Jfs.
 
 3) Reducir el Volumen:
+```Bash
 lvreduce -L-XXG /dev/vg/var (Donde XX es el tamaño a reducir)
-
+```
 ó
-
+```Bash
 lvreduce -LXXG /dev/vg/var (Donde XX es el tamaño con el que quedará el volumen)
+```
 
 4)Volver a montar el filesystem:
+```Bash
 mount /var
+```
 
 ## Eliminar un Volumen Lógico
+```Bash
 lvremove
+```
 Ejemplo:
 ```Bash
 # lvremove /dev/vg/samba-swap
