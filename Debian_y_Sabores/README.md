@@ -238,6 +238,7 @@ lvresize -L+10G /dev/vg/var (sustituir 10G por el tamaño correcto, en este caso
 
 2) Expandir el filesystem para que coincida con el tamaño del Volumen Lógico
 Nota: haré la explicación con /var, por ser un filesystem complejo)
+
 a) Desmontar el filesystem.
 Nota, si algún proceso tiene tomado archivos dentro de este filesystem, no se podrá desmontar.
 Para consultar los procesos que tienen archivos abiertos dentro de este filesystem usamos 'lsof':
