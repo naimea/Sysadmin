@@ -43,7 +43,9 @@ aptitude install lvm2
 
 ## Comandos de gestion
 ## Creando un Volume Group
+
 1) Seleccionar el dispositivo:
+
 1.a) Si es un disco o partición local.
 ```Bash
 # fdisk -l
