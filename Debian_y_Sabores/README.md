@@ -34,7 +34,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-#LVM 
+# LVM 
 
 ## Instalación 
 aptitude install lvm2
