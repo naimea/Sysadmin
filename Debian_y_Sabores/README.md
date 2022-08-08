@@ -62,6 +62,7 @@ Disposit. Inicio Comienzo Fin Bloques Id Sistema
 /dev/sda8 8038 17769 78172258+ 83 Linux
 ```
 Nota: En este caso asignaremos el /dev/sda8 para administrarlo con LVM
+
 1.b) Si es un LUN asignado desde la SAN 
 ```Bash
 # cat /proc/scsi/scsi
@@ -86,10 +87,17 @@ lrwxrwxrwx 1 root root 9 feb 15 06:32 scsi-1HITACHI_770141020124 -> ../../sda
 ...
 ```
 Nota: En este caso podemos ver que el disco puede ser identificado como /dev/sda
+
 2) Inicializamos el dispositivo (disco o partición)
+```Bash
 pvcreate /dev/sda8
+```
+
 3) Creamos un 'Volume Group' llamado "vg" con este dispositivo. Se puede colocar una lista de dispositivos separados por un espacio en blanco, si previamente han sido inicializados.
+```Bash
 vgcreate vg /dev/sda8
+```
+
 4) Podemos ver los 'Volume Group' definidos con el comando vgdisplay
 ```Bash
 vgdisplay
