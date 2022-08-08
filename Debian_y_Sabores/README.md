@@ -34,6 +34,91 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+## Comandos básicos Docker
+## Descarga una imagen al repositorio local
+```Bash
+docker pull <imagen>
+```
+Ejemplo:
+```Bash
+docker pull postgres
+```
+
+## Ejecutar un contenedor
+```Bash
+docker run -d <imagen>
+```
+
+Ejemplo:
+```Bash
+docker run --name postgresDB -e POSTGRES_PASSWORD=******** -d postgres
+```
+
+## Listar imagenes locales
+```Bash
+docker images
+```
+
+## Listar contenedores en ejecución
+```Bash
+docker ps
+```
+
+## Ejecutar un comando en el contenedor
+```Bash
+docker exec -it <container-id> <comando> 
+```
+
+Ejemplo (inicia una shell bash en el contenedor):
+```Bash
+docker exec -it <container-id> bash 
+```
+
+## Detener un contenedor
+```Bash
+docker stop <id_contenedor>
+```
+
+Ejemplo:
+```Bash
+docker stop postgresDB
+```
+
+-# Borrar o elimina el contenedor
+```Bash
+docker rm <id_contenedor>
+```
+
+Ejemplo:
+```Bash
+docker rm -f rstudio
+```
+
+# Borrar la imagen
+```Bash
+docker rmi <imagen>
+```
+
+Ejemplo:
+```Bash
+docker rmi rocker/verse:latest
+```
+
+# Resplaldar el contenedor en un archivo
+```Bash
+docker export -o respaldo.tar nombre_contenedor
+```
+
+Tambien es valido:
+```Bash
+docker export nombre-contenedor > respaldo.tar
+```
+
+# Restaurar un contenedor desde el respaldo
+```Bash
+docker import respaldo.tar nuevo_nombre_contenedor
+```
+
 # LVM 
 
 ## Instalación 
