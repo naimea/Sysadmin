@@ -17,7 +17,7 @@ curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-## Ubuntu, Mint y oreas variantes
+## Ubuntu, Mint y otras variantes
 ```Bash
 echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
@@ -54,6 +54,11 @@ Ejemplo:
 docker run --name postgresDB -e POSTGRES_PASSWORD=******** -d postgres
 ```
 
+## Iniciar un contenedor
+```Bash
+docker start <id_contenedor>
+```
+
 ## Listar imagenes locales
 ```Bash
 docker images
@@ -62,6 +67,10 @@ docker images
 ## Listar contenedores en ejecución
 ```Bash
 docker ps
+```
+## Listar todos los contenedores en elsistema (incluidos los apagados)
+```Bash
+docker ps -a
 ```
 
 ## Ejecutar un comando en el contenedor
