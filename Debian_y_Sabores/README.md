@@ -10,13 +10,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 apt update
 
-apt install docker-ce docker-ce-cli containerd.io pigz
+apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-usermod -aG docker $USER
-
-curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-chmod +x /usr/local/bin/docker-compose
+docker run hello-world
 ```
 
 ## Ubuntu, Mint y otras variantes
